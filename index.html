@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f0c29">
+<title>برنامج الفرنسية 🇫🇷</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { min-height: 100vh; background: linear-gradient(135deg, #0f0c29, #1a1a3e, #0f0c29); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #e2e8f0; direction: rtl; padding-bottom: 80px; }
+.header { background: linear-gradient(135deg, #1e3a5f, #0d2137); padding: 28px 16px 16px; text-align: center; border-bottom: 1px solid rgba(96,165,250,0.2); position: sticky; top: 0; z-index: 100; }
+.header .flag { font-size: 34px; margin-bottom: 4px; }
+.header h1 { font-size: 20px; font-weight: 800; color: #60a5fa; margin-bottom: 4px; }
+.header p { font-size: 12px; color: #94a3b8; }
+.tabs { display: flex; gap: 8px; padding: 14px 12px; flex-wrap: wrap; justify-content: center; }
+.tab-btn { padding: 8px 12px; border-radius: 20px; border: none; cursor: pointer; font-size: 12px; font-weight: 700; background: rgba(255,255,255,0.07); color: #94a3b8; transition: all 0.2s; font-family: inherit; }
+.tab-btn.active { background: #3b82f6; color: #fff; }
+.content { padding: 0 14px; }
+.section { display: none; }
+.section.active { display: block; }
+.month-selector { display: flex; gap: 8px; margin-bottom: 16px; }
+.month-btn { flex: 1; padding: 10px 4px; border-radius: 12px; border: 2px solid transparent; background: rgba(255,255,255,0.05); color: #64748b; cursor: pointer; font-size: 11px; font-weight: 700; transition: all 0.2s; font-family: inherit; line-height: 1.4; }
+.daily-item { background: rgba(255,255,255,0.05); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start; }
+.daily-icon { font-size: 24px; flex-shrink: 0; }
+.daily-body { flex: 1; }
+.daily-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.daily-app { font-weight: 700; font-size: 14px; color: #e2e8f0; }
+.daily-time { font-size: 10px; color: #64748b; background: rgba(255,255,255,0.07); padding: 2px 8px; border-radius: 10px; }
+.daily-task { font-size: 12px; color: #94a3b8; margin-bottom: 6px; }
+.skill-badge { font-size: 10px; padding: 2px 8px; border-radius: 8px; font-weight: 600; }
+.info-box { border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.info-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.info-text { font-size: 12px; color: #94a3b8; line-height: 1.5; }
+.skill-card { background: rgba(255,255,255,0.04); border-radius: 16px; padding: 16px 14px; margin-bottom: 14px; }
+.skill-title { font-weight: 800; font-size: 16px; margin-bottom: 12px; }
+.skill-step { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+.step-num { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; flex-shrink: 0; }
+.step-text { font-size: 13px; color: #cbd5e1; line-height: 1.5; }
+.think-card { background: rgba(255,255,255,0.04); border-radius: 14px; padding: 14px; display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+.podcast-card { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.footer { text-align: center; padding: 30px 20px 10px; color: #475569; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="flag">🇫🇷</div>
+  <h1>برنامجك الشامل للفرنسية</h1>
+  <p>من A2 إلى B2 في 6 أشهر • مخصص لك</p>
+</div>
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('program',this)">📅 البرنامج</button>
+  <button class="tab-btn" onclick="showTab('skills',this)">🎯 المهارات</button>
+  <button class="tab-btn" onclick="showTab('thinking',this)">🧠 التفكير</button>
+  <button class="tab-btn" onclick="showTab('podcasts',this)">🎧 البودكاست</button>
+</div>
+<div class="content">
+  <div id="program" class="section active">
+    <div class="month-selector">
+      <button class="month-btn" id="mb1" onclick="showMonth(1)" style="border-color:#4ade80;background:rgba(74,222,128,0.1);color:#4ade80">الشهر 1-2<br><small>A2←B1</small></button>
+      <button class="month-btn" id="mb2" onclick="showMonth(2)">الشهر 3-4<br><small>B1</small></button>
+      <button class="month-btn" id="mb3" onclick="showMonth(3)">الشهر 5-6<br><small>B1←B2</small></button>
+    </div>
+    <div id="month1">
+      <div style="background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:10px 14px;margin-bottom:14px;text-align:center;font-weight:700;font-size:14px;color:#4ade80">🎯 البناء والأساس</div>
+      <div class="daily-item" style="border-right:3px solid #4ade80"><div class="daily-icon">📘</div><div class="daily-body"><div class="daily-top"><span class="daily-app">Busuu</span><span class="daily-time">07:00 • 20 دقيقة</span></div><div class="daily-task">درس جديد + كتابة في الكراس</div><span class="skill-badge" style="background:rgba(74,222,128,0.2);color:#4ade80">قواعد</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #4ade80"><div class="daily-icon">🃏</div><div class="daily-body"><div class="daily-top"><span class="daily-app">AnkiDroid</span><span class="daily-time">12:00 • 10 دقائق</span></div><div class="daily-task">مراجعة + 10 كلمات جديدة</div><span class="skill-badge" style="background:rgba(74,222,128,0.2);color:#4ade80">مفردات</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #4ade80"><div class="daily-icon">🎧</div><div class="daily-body"><div class="daily-top"><span class="daily-app">Coffee Break French</span><span class="daily-time">15:00 • 15 دقيقة</span></div><div class="daily-task">حلقة كاملة مع الترديد بصوت عالٍ</div><span class="skill-badge" style="background:rgba(74,222,128,0.2);color:#4ade80">استماع</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #4ade80"><div class="daily-icon">📖</div><div class="daily-body"><div class="daily-top"><span class="daily-app">Beelinguapp</span><span class="daily-time">20:00 • 10 دقائق</span></div><div class="daily-task">قراءة نص قصير ثنائي اللغة</div><span class="skill-badge" style="background:rgba(74,222,128,0.2);color:#4ade80">قراءة</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #4ade80"><div class="daily-icon">✍️</div><div class="daily-body"><div class="daily-top"><span class="daily-app">الكراس</span><span class="daily-time">22:00 • 5 دقائق</span></div><div class="daily-task">اكتب 3 جمل عن يومك بالفرنسية</div><span class="skill-badge" style="background:rgba(74,222,128,0.2);color:#4ade80">كتابة</span></div></div>
+      <div class="info-box" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3)"><div class="info-title" style="color:#fbbf24">📅 أسبوعياً</div><div class="info-text">محادثة 10 دقائق في Discord</div></div>
+      <div class="info-box" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3)"><div class="info-title" style="color:#a78bfa">🧠 تفكير بالفرنسية</div><div class="info-text">سمّ الأشياء حولك بالفرنسية: table، fenêtre، téléphone...</div></div>
+    </div>
+    <div id="month2" style="display:none">
+      <div style="background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:12px;padding:10px 14px;margin-bottom:14px;text-align:center;font-weight:700;font-size:14px;color:#60a5fa">🎯 الطلاقة والاستماع</div>
+      <div class="daily-item" style="border-right:3px solid #60a5fa"><div class="daily-icon">📘</div><div class="daily-body"><div class="daily-top"><span class="daily-app">Busuu</span><span class="daily-time">07:00 • 20 دقيقة</span></div><div class="daily-task">درس متقدم مع تمارين القواعد</div><span class="skill-badge" style="background:rgba(96,165,250,0.2);color:#60a5fa">قواعد</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #60a5fa"><div class="daily-icon">🃏</div><div class="daily-body"><div class="daily-top"><span class="daily-app">AnkiDroid</span><span class="daily-time">12:00 • 10 دقائق</span></div><div class="daily-task">مراجعة + 15 كلمة جديدة بالسياق</div><span class="skill-badge" style="background:rgba(96,165,250,0.2);color:#60a5fa">مفردات</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #60a5fa"><div class="daily-icon">📻</div><div class="daily-body"><div class="daily-top"><span class="daily-app">Journal en français facile</span><span class="daily-time">15:00 • 20 دقيقة</span></div><div class="daily-task">استمع مرتين: مرة عامة + مرة للتفاصيل</div><span class="skill-badge" style="background:rgba(96,165,250,0.2);color:#60a5fa">استماع</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #60a5fa"><div class="daily-icon">🎬</div><div class="daily-body"><div class="daily-top"><span class="daily-app">TV5MONDE EDU</span><span class="daily-time">20:00 • 15 دقيقة</span></div><div class="daily-task">فيديو + تمارين الموقع</div><span class="skill-badge" style="background:rgba(96,165,250,0.2);color:#60a5fa">استماع+قراءة</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #60a5fa"><div class="daily-icon">💬</div><div class="daily-body"><div class="daily-top"><span class="daily-app">Discord</span><span class="daily-time">22:00 • 10 دقائق</span></div><div class="daily-task">محادثة نصية مع ناطق أصيل</div><span class="skill-badge" style="background:rgba(96,165,250,0.2);color:#60a5fa">تحدث</span></div></div>
+      <div class="info-box" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3)"><div class="info-title" style="color:#fbbf24">📅 أسبوعياً</div><div class="info-text">محادثة صوتية 15 دقيقة في Discord مرتان</div></div>
+      <div class="info-box" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3)"><div class="info-title" style="color:#a78bfa">🧠 تفكير بالفرنسية</div><div class="info-text">راجع يومك بالفرنسية قبل النوم: Aujourd'hui j'ai...</div></div>
+    </div>
+    <div id="month3" style="display:none">
+      <div style="background:rgba(244,114,182,0.15);border:1px solid rgba(244,114,182,0.3);border-radius:12px;padding:10px 14px;margin-bottom:14px;text-align:center;font-weight:700;font-size:14px;color:#f472b6">🎯 الانغماس الكامل</div>
+      <div class="daily-item" style="border-right:3px solid #f472b6"><div class="daily-icon">📘</div><div class="daily-body"><div class="daily-top"><span class="daily-app">Busuu</span><span class="daily-time">07:00 • 20 دقيقة</span></div><div class="daily-task">دروس B2 + مراجعة شاملة</div><span class="skill-badge" style="background:rgba(244,114,182,0.2);color:#f472b6">قواعد</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #f472b6"><div class="daily-icon">🃏</div><div class="daily-body"><div class="daily-top"><span class="daily-app">AnkiDroid</span><span class="daily-time">12:00 • 10 دقائق</span></div><div class="daily-task">مراجعة + تعبيرات اصطلاحية</div><span class="skill-badge" style="background:rgba(244,114,182,0.2);color:#f472b6">مفردات</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #f472b6"><div class="daily-icon">🎙️</div><div class="daily-body"><div class="daily-top"><span class="daily-app">France Inter</span><span class="daily-time">15:00 • 20 دقيقة</span></div><div class="daily-task">بودكاست أصيل بدون ترجمة</div><span class="skill-badge" style="background:rgba(244,114,182,0.2);color:#f472b6">استماع</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #f472b6"><div class="daily-icon">🎥</div><div class="daily-body"><div class="daily-top"><span class="daily-app">فيلم/مسلسل فرنسي</span><span class="daily-time">19:00 • 20 دقيقة</span></div><div class="daily-task">شاهد بترجمة فرنسية فقط</div><span class="skill-badge" style="background:rgba(244,114,182,0.2);color:#f472b6">استماع+قراءة</span></div></div>
+      <div class="daily-item" style="border-right:3px solid #f472b6"><div class="daily-icon">🗣️</div><div class="daily-body"><div class="daily-top"><span class="daily-app">الكراس + iTalki</span><span class="daily-time">22:00 • 15 دقيقة</span></div><div class="daily-task">كتابة فقرة + محادثة مع مدرس أسبوعياً</div><span class="skill-badge" style="background:rgba(244,114,182,0.2);color:#f472b6">كتابة+تحدث</span></div></div>
+      <div class="info-box" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3)"><div class="info-title" style="color:#fbbf24">📅 أسبوعياً</div><div class="info-text">مدرس على iTalki مرة أسبوعياً (45 دقيقة)</div></div>
+      <div class="info-box" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3)"><div class="info-title" style="color:#a78bfa">🧠 تفكير بالفرنسية</div><div class="info-text">فكّر مباشرة بالفرنسية، لا تترجم من العربية</div></div>
+    </div>
+  </div>
+  <div id="skills" class="section">
+    <div class="skill-card" style="border-top:3px solid #f59e0b"><div class="skill-title" style="color:#f59e0b">الاستماع 👂</div><div class="skill-step"><div class="step-num" style="background:rgba(245,158,11,0.2);color:#f59e0b">1</div><div class="step-text">المرة الأولى: استمع كاملاً بدون توقف</div></div><div class="skill-step"><div class="step-num" style="background:rgba(245,158,11,0.2);color:#f59e0b">2</div><div class="step-text">المرة الثانية: توقف عند الكلمات الجديدة</div></div><div class="skill-step"><div class="step-num" style="background:rgba(245,158,11,0.2);color:#f59e0b">3</div><div class="step-text">المرة الثالثة: أعد الجمل بصوت عالٍ (Shadowing)</div></div><div class="skill-step"><div class="step-num" style="background:rgba(245,158,11,0.2);color:#f59e0b">4</div><div class="step-text">الهدف: فهم الفرنسيين بسرعتهم الطبيعية</div></div></div>
+    <div class="skill-card" style="border-top:3px solid #10b981"><div class="skill-title" style="color:#10b981">التحدث 🗣️</div><div class="skill-step"><div class="step-num" style="background:rgba(16,185,129,0.2);color:#10b981">1</div><div class="step-text">تكلم مع نفسك بالفرنسية يومياً 5 دقائق</div></div><div class="skill-step"><div class="step-num" style="background:rgba(16,185,129,0.2);color:#10b981">2</div><div class="step-text">سجل صوتك وقارنه بالناطق الأصيل</div></div><div class="skill-step"><div class="step-num" style="background:rgba(16,185,129,0.2);color:#10b981">3</div><div class="step-text">Discord: ابدأ بالكتابة ثم انتقل للصوت</div></div><div class="skill-step"><div class="step-num" style="background:rgba(16,185,129,0.2);color:#10b981">4</div><div class="step-text">iTalki: مدرس أسبوعي من الشهر الخامس</div></div></div>
+    <div class="skill-card" style="border-top:3px solid #6366f1"><div class="skill-title" style="color:#6366f1">القراءة 📖</div><div class="skill-step"><div class="step-num" style="background:rgba(99,102,241,0.2);color:#6366f1">1</div><div class="step-text">Beelinguapp: نصوص ثنائية اللغة</div></div><div class="skill-step"><div class="step-num" style="background:rgba(99,102,241,0.2);color:#6366f1">2</div><div class="step-text">TV5MONDE: مقالات قصيرة مع تمارين</div></div><div class="skill-step"><div class="step-num" style="background:rgba(99,102,241,0.2);color:#6366f1">3</div><div class="step-text">عند B2: Le Petit Prince ← L'Étranger</div></div><div class="skill-step"><div class="step-num" style="background:rgba(99,102,241,0.2);color:#6366f1">4</div><div class="step-text">لا تقف عند كل كلمة، خمّن من السياق</div></div></div>
+    <div class="skill-card" style="border-top:3px solid #ec4899"><div class="skill-title" style="color:#ec4899">الكتابة ✍️</div><div class="skill-step"><div class="step-num" style="background:rgba(236,72,153,0.2);color:#ec4899">1</div><div class="step-text">3 جمل يومية في الكراس عن يومك</div></div><div class="skill-step"><div class="step-num" style="background:rgba(236,72,153,0.2);color:#ec4899">2</div><div class="step-text">أضف كلمات Busuu الجديدة بجملة كاملة</div></div><div class="skill-step"><div class="step-num" style="background:rgba(236,72,153,0.2);color:#ec4899">3</div><div class="step-text">من الشهر الثالث: فقرة كاملة يومياً</div></div><div class="skill-step"><div class="step-num" style="background:rgba(236,72,153,0.2);color:#ec4899">4</div><div class="step-text">اطلب من Discord تصحيح كتاباتك</div></div></div>
+  </div>
+  <div id="thinking" class="section">
+    <div style="background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);border-radius:14px;padding:14px;margin-bottom:16px"><p style="font-size:13px;color:#a5b4fc;line-height:1.7">🔑 السر الحقيقي للطلاقة هو التوقف عن الترجمة من العربية والبدء بالتفكير المباشر بالفرنسية.</p></div>
+    <div class="think-card"><div style="font-size:30px;flex-shrink:0">👁️</div><div><div style="font-size:11px;color:#60a5fa;font-weight:700;margin-bottom:4px">الشهر 1-2</div><div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:6px">تسمية الأشياء</div><div style="font-size:13px;color:#94a3b8;line-height:1.6">انظر لكل شيء حولك وقل اسمه بالفرنسية: table، chaise، fenêtre...</div></div></div>
+    <div class="think-card"><div style="font-size:30px;flex-shrink:0">💭</div><div><div style="font-size:11px;color:#60a5fa;font-weight:700;margin-bottom:4px">الشهر 3-4</div><div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:6px">الحوار الداخلي</div><div style="font-size:13px;color:#94a3b8;line-height:1.6">راجع يومك بالفرنسية: Aujourd'hui j'ai mangé... j'ai travaillé...</div></div></div>
+    <div class="think-card"><div style="font-size:30px;flex-shrink:0">🧠</div><div><div style="font-size:11px;color:#60a5fa;font-weight:700;margin-bottom:4px">الشهر 5-6</div><div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:6px">التفكير الكامل</div><div style="font-size:13px;color:#94a3b8;line-height:1.6">في أي موقف اسأل نفسك: كيف أقول هذا بالفرنسية؟ لا تترجم، فكّر مباشرة.</div></div></div>
+    <div class="think-card"><div style="font-size:30px;flex-shrink:0">🌙</div><div><div style="font-size:11px;color:#60a5fa;font-weight:700;margin-bottom:4px">عند B2</div><div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:6px">الأحلام بالفرنسية!</div><div style="font-size:13px;color:#94a3b8;line-height:1.6">عندما تبدأ بالحلم بالفرنسية فأنت وصلت! هذا المستوى الحقيقي للانغماس.</div></div></div>
+    <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:14px;padding:14px"><div style="font-weight:700;color:#34d399;margin-bottom:8px;font-size:14px">💡 تمرين يومي (5 دقائق)</div><div style="font-size:13px;color:#94a3b8;line-height:1.8">كل صباح اسأل نفسك:<br><span style="color:#6ee7b7;font-style:italic">"Qu'est-ce que je vais faire aujourd'hui?"<br>"Comment je me sens?"<br>"Quel temps fait-il?"</span></div></div>
+  </div>
+  <div id="podcasts" class="section">
+    <div style="background:rgba(245,158,11,0.1);border-radius:12px;padding:12px 14px;margin-bottom:16px;border:1px solid rgba(245,158,11,0.3)"><div style="font-size:13px;color:#fbbf24;font-weight:700;margin-bottom:4px">⭐ ابدأ بهذا الآن</div><div style="font-size:13px;color:#94a3b8"><strong style="color:#fde68a">Français Authentique</strong> — الأنسب لك كناطق بالعربية</div></div>
+    <div class="podcast-card"><div style="display:flex;gap:10px;align-items:center"><div style="font-size:24px">☕</div><div><div style="font-weight:700;font-size:14px;color:#e2e8f0">Coffee Break French</div><div style="font-size:11px;color:#64748b">A2</div></div></div><div style="background:rgba(74,222,128,0.2);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">الآن</div></div>
+    <div class="podcast-card"><div style="display:flex;gap:10px;align-items:center"><div style="font-size:24px">🇫🇷</div><div><div style="font-weight:700;font-size:14px;color:#e2e8f0">Français Authentique</div><div style="font-size:11px;color:#64748b">A2-B1</div></div></div><div style="background:rgba(74,222,128,0.2);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">الآن</div></div>
+    <div class="podcast-card"><div style="display:flex;gap:10px;align-items:center"><div style="font-size:24px">🎯</div><div><div style="font-weight:700;font-size:14px;color:#e2e8f0">Inner French</div><div style="font-size:11px;color:#64748b">B1</div></div></div><div style="background:rgba(96,165,250,0.15);color:#60a5fa;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">الشهر 3</div></div>
+    <div class="podcast-card"><div style="display:flex;gap:10px;align-items:center"><div style="font-size:24px">📰</div><div><div style="font-weight:700;font-size:14px;color:#e2e8f0">Journal en français facile</div><div style="font-size:11px;color:#64748b">B1</div></div></div><div style="background:rgba(96,165,250,0.15);color:#60a5fa;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">الشهر 3</div></div>
+    <div class="podcast-card"><div style="display:flex;gap:10px;align-items:center"><div style="font-size:24px">🦜</div><div><div style="font-weight:700;font-size:14px;color:#e2e8f0">Duolingo French Podcast</div><div style="font-size:11px;color:#64748b">B1-B2</div></div></div><div style="background:rgba(96,165,250,0.15);color:#60a5fa;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">الشهر 4</div></div>
+    <div class="podcast-card"><div style="display:flex;gap:10px;align-items:center"><div style="font-size:24px">📡</div><div><div style="font-weight:700;font-size:14px;color:#e2e8f0">France Inter</div><div style="font-size:11px;color:#64748b">B2</div></div></div><div style="background:rgba(244,114,182,0.15);color:#f472b6;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">الشهر 5</div></div>
+  </div>
+</div>
+<div class="footer">🎯 الاستمرارية أهم من الكمال • يوم واحد في اليوم يصنع الفرق</div>
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function showMonth(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('month'+i).style.display='none';
+    var mb=document.getElementById('mb'+i);
+    mb.style.borderColor='transparent';
+    mb.style.background='rgba(255,255,255,0.05)';
+    mb.style.color='#64748b';
+  });
+  document.getElementById('month'+n).style.display='block';
+  var colors={1:'#4ade80',2:'#60a5fa',3:'#f472b6'};
+  var mb=document.getElementById('mb'+n);
+  mb.style.borderColor=colors[n];
+  mb.style.background='rgba('+{1:'74,222,128',2:'96,165,250',3:'244,114,182'}[n]+',0.1)';
+  mb.style.color=colors[n];
+}
+</script>
+</body>
+</html>
